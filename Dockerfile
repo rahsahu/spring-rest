@@ -1,4 +1,4 @@
-FROM us.gcr.io/ppp-prod/common:java-8-latest
+FROM common:java-8-latest
 
 COPY target/spring-rest.jar /opt/spring-rest/
 
