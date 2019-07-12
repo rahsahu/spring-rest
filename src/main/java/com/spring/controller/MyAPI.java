@@ -12,7 +12,12 @@ public class MyAPI {
 	
 	@RequestMapping(value = "/check", method = { RequestMethod.GET,RequestMethod.POST })
 	public ResponseEntity<String> helloAPI() {
-		return new ResponseEntity<>("AA gaye suar ke baccho",HttpStatus.ACCEPTED);
+		return new ResponseEntity<>("Ho Gaya check Success",HttpStatus.ACCEPTED);
+	}
+	
+	@RequestMapping(value = "/status", method = { RequestMethod.GET,RequestMethod.POST })
+	public ResponseEntity<String> statusAPI() {
+		return new ResponseEntity<>("LO CHAL GAI API",HttpStatus.ACCEPTED);
 	}
 
 }
