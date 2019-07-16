@@ -1,4 +1,4 @@
-FROM common:java-8-latest
+FROM java:8
 
 COPY target/spring-rest.jar /opt/spring-rest/
 
