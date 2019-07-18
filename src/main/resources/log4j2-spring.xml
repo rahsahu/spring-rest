@@ -22,7 +22,7 @@
         </Root>
 
         <!-- LOG "com.spring*" at TRACE level -->
-        <Logger name="com.spring" level="trace"></Logger>
+        <Logger name="com.spring" level="info"></Logger>
     </Loggers>
 
 </Configuration>

@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,6 +27,7 @@ import com.spring.repository.NoteRepository;
 @RestController
 @RequestMapping("/api")
 public class NoteController {
+	Logger logger = LogManager.getLogger(MyAPI.class);
 
 	@Autowired
 	NoteRepository noteRepository;
