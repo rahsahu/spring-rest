@@ -6,6 +6,6 @@ WORKDIR /opt/spring-rest
 
 RUN mkdir temp
 
-ENTRYPOINT java $JAVA_OPTS -jar ./spring-rest.jar
+ENTRYPOINT java  -jar ./spring-rest.jar
 
-EXPOSE 8080
+EXPOSE 8085

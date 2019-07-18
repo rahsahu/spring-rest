@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +24,11 @@ public class MyAPI {
 	public ResponseEntity<String> statusAPI() {
 		logger.info("Status API call ");
 		return new ResponseEntity<>("Service is up", HttpStatus.ACCEPTED);
+	}
+
+	@GetMapping
+	public String sayHello() {
+		return "Hello and Welcome SPRING BOOT SERVICE.";
 	}
 
 }
