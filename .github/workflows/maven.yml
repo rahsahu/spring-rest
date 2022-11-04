@@ -16,7 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Set up JDK 11
+    - name: Set up JDK & Maven
       uses: actions/setup-java@v3
       with:
         java-version: '11'
@@ -34,4 +34,10 @@ jobs:
       with:
         username: ${{ secrets.dkr_user }}
         password: ${{ secrets.dkr_pwd }}
+        
+    - name: Build and push
+      uses: docker/build-push-action@v3
+      with:
+        push: true
+        tags: ${{ secrets.dkr_user }}/${{ github.event.repository.name }}:latest   
       
