@@ -17,7 +17,7 @@ public class MyAPI {
 	@RequestMapping(value = "/check", method = { RequestMethod.GET, RequestMethod.POST })
 	public ResponseEntity<String> helloAPI() {
 		logger.info("Check API call ");
-		return new ResponseEntity<>("Check done, Bye", HttpStatus.ACCEPTED);
+		return new ResponseEntity<>("Check done, All gud", HttpStatus.ACCEPTED);
 	}
 
 	@RequestMapping(value = "/status", method = { RequestMethod.GET, RequestMethod.POST })
