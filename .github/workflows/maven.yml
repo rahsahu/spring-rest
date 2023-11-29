@@ -26,15 +26,19 @@ jobs:
       run: |
           echo "Triggered by ${{ github.event_name }}"    
 
-    - name: Check if not triggered by workflow_dispatch
+    - name: Check if not triggered by workflow_dispatch set false
+      id: var
       run: |
           if [[ ${{ github.event_name }} != 'workflow_dispatch' ]]; then
             echo "This workflow was not triggered by workflow_dispatch"
-            VAR=false
+            echo "::set-output name=var::false"
           else
             echo "This workflow was triggered by workflow_dispatch"
+            echo "::set-output name=var::${{ inputs.var }}"
           fi    
+          
     - name: Print Run Command
       run: |
           echo "The input run command is: ${{ inputs.var }}"
+          echo "The input run command is: ${{ steps.get_inputs.outputs.var }}"
       
