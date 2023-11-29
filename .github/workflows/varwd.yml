@@ -1,0 +1,34 @@
+name: Custom Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      parameter_one:
+        description: 'Parameter One Description'
+        required: true
+        default: 'default_value_one'
+      parameter_two:
+        description: 'Parameter Two Description'
+        required: true
+        default: 'default_value_two'
+  push:
+    branches:
+      - master
+      
+jobs:
+  process_input:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get inputs
+        id: get_inputs
+        uses: actions/github-script@v4
+        with:
+          script: |
+            echo "::set-output name=param_one::${{ github.event.inputs.parameter_one }}"
+            echo "::set-output name=param_two::${{ github.event.inputs.parameter_two }}"
+      
+      - name: Use inputs in subsequent steps
+        run: |
+          echo "Parameter One: ${{ steps.get_inputs.outputs.param_one }}"
+          echo "Parameter Two: ${{ steps.get_inputs.outputs.param_two }}"
+        # Use these parameters in subsequent steps or commands as needed
