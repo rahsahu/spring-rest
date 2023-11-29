@@ -16,11 +16,16 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
+  var-experiment:
     runs-on: ubuntu-latest
+    
     steps:
     - uses: actions/checkout@v3
     
+    - name: Print Triggering Event
+      run: |
+          echo "Triggered by ${{ github.event_name }}"    
+        
     - name: Print Run Command
       run: |
           echo "The input run command is: ${{ inputs.run_command }}"
