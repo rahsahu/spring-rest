@@ -25,8 +25,20 @@ jobs:
     - name: Print Triggering Event
       run: |
           echo "Triggered by ${{ github.event_name }}"    
-        
+
+    - name: Check if not triggered by workflow_dispatch set false
+      id: updated_input
+      run: |
+          if [[ ${{ github.event_name }} != 'workflow_dispatch' ]]; then
+            echo "This workflow was not triggered by workflow_dispatch"
+            echo "VERSION_FLAG=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "This workflow was triggered by workflow_dispatch"
+            echo "VERSION_FLAG=${{ inputs.var }}" >> "$GITHUB_OUTPUT"
+          fi    
+          
     - name: Print Run Command
       run: |
           echo "The input run command is: ${{ inputs.var }}"
+          echo "The input run command is: ${{ steps.updated_input.outputs.VERSION_FLAG }}"
       
