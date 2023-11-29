@@ -1,6 +1,6 @@
 
 
-name: Mater Branch workflow
+name: var experiment
 
 on:
   workflow_dispatch:
@@ -28,5 +28,5 @@ jobs:
         
     - name: Print Run Command
       run: |
-          echo "The input run command is: ${{ inputs.run_command }}"
+          echo "The input run command is: ${{ inputs.var }}"
       
