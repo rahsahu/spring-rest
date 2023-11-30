@@ -1,22 +1,22 @@
-
-
-name: var experiment
-
-on:
+name: publish-release
+permissions:
+  contents: write
+  pull-requests: read
+'on':
   workflow_dispatch:
     inputs:
-      var:
-        description: 'Description for var'
-        required: false
-        default: 'false'
-        
-  push:
-    branches: [ "master" ]
+      isMajorVersion:
+        type: boolean
+        description: Breaks Backwards Compatibility
+        default: false
   pull_request:
-    branches: [ "master" ]
-
+    branches:
+      - main
+  push:
+    branches:
+      - main
 jobs:
-  setup:
+  setup-vars:
     runs-on: ubuntu-latest
     steps:
     - name: Check if not triggered by workflow dispatch set to default
@@ -28,7 +28,11 @@ jobs:
         else
           echo "This workflow was triggered by workflow_dispatch"
           echo "VERSION_FLAG=${{ inputs.isMajorVersion }}" >> "$GITHUB_OUTPUT"
-        fi
-    - name: Check if not triggered by workflow_dispatch set false
-      uses: actions/checkout@v4
-      
+        fi     
+  publis-release:
+    runs-on: ubuntu-latest
+    needs: setup-vars
+    steps:
+    - name: test
+      run: |
+        echo "${{ setup-vars.updated_input.outputs.VERSION_FLAG }}"
