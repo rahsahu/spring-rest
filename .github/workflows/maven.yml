@@ -16,12 +16,13 @@ on:
     branches: [ "master" ]
 
 jobs:
-  var-experiment:
+  setup:
     runs-on: ubuntu-latest
-    
     steps:
     - uses: actions/checkout@v3
-    
+  run-job: 
+    runs-on: ubuntu-latest
+    steps:
     - name: Print Triggering Event
       run: |
           echo "Triggered by ${{ github.event_name }}"    
