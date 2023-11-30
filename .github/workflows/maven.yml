@@ -32,9 +32,9 @@ jobs:
           
   setup-run:
     runs-on: ubuntu-latest
-      steps:
-      - name: Print Run Command
-        run: |
+    steps:
+    - name: Print Run Command
+      run: |
             echo "The input run command is: ${{ inputs.var }}"
             echo "The input run command is: ${{ steps.updated_input.outputs.VERSION_FLAG }}"
       
