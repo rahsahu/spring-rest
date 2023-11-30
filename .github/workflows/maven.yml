@@ -11,10 +11,10 @@ permissions:
         default: false
   pull_request:
     branches:
-      - main
+      - master
   push:
     branches:
-      - main
+      - master
 jobs:
   setup-vars:
     runs-on: ubuntu-latest
