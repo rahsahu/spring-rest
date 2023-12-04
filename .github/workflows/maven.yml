@@ -35,4 +35,4 @@ jobs:
     steps:
     - name: test
       run: |
-        echo "${{ needs.setup-vars.outputs.VERSION_FLAG }}"
+        echo "${{ steps.setup-vars.outputs.VERSION_FLAG }}"
