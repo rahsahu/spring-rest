@@ -24,10 +24,10 @@ jobs:
       run: |
         if [[ ${{ github.event_name }} != 'workflow_dispatch' ]]; then
           echo "This workflow was not triggered by workflow_dispatch"
-          echo "VERSION_FLAG=false" >> $GITHUB_ENV
+          echo "VERSION_FLAG=false" >> $GITHUB_OUTPUT
         else
           echo "This workflow was triggered by workflow_dispatch"
-          echo "VERSION_FLAG=${{ inputs.isMajorVersion }}" >> $GITHUB_ENV
+          echo "VERSION_FLAG=${{ inputs.isMajorVersion }}" >> $GITHUB_OUTPUT
         fi     
   publis-release:
     runs-on: ubuntu-latest
@@ -35,4 +35,4 @@ jobs:
     steps:
     - name: test
       run: |
-        echo $VERSION_FLAG
+        echo ${{ needs.setup-vars.outputs.VERSION_FLAG }}
