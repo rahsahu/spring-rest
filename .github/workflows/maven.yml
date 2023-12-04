@@ -22,6 +22,12 @@ jobs:
     - name: Check if not triggered by workflow dispatch set to default
       id: updated_input
       run: |
+        echo ${{ inputs.isMajorVersion }}
+        echo "FLAG = ${{ inputs.isMajorVersion }}"
+        echo ${{inputs.isMajorVersion}}
+        echo "WS ${{inputs.isMajorVersion}}"
+        echo $inputs.isMajorVersion
+
         echo "EVENT:  ${{ github.event_name }}"
         if [[ ${{ github.event_name }} != 'workflow_dispatch' ]]; then
           echo "VERSION_FLAG=false" >> "$GITHUB_OUTPUT"
