@@ -28,5 +28,5 @@ jobs:
         run: |
           echo "Updated value is $MY_VARIABLE"
           echo "Updated value is ${{ inputs.is_var }}"       
-          echo "Updated value is ${{ var1 }}"       
+          echo "Updated value is ${{ inputs.var1 }}"       
           echo "Updated value is $var1"       
