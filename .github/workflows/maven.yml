@@ -19,9 +19,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       MY_VARIABLE: initial_value
+      type: true
     steps:
       - name: Update Variable
-        run: echo "::set-env name=MY_VARIABLE::new_value"
+        run: echo "MY_VARIABLE=new_value" >> "$GITHUB_ENV"
 
       - name: Use Updated Variable
         run: |
