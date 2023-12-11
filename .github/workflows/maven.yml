@@ -1,38 +1,30 @@
-name: publish-release
-permissions:
-  contents: write
-  pull-requests: read
-'on':
-  workflow_dispatch:
-    inputs:
-      isMajorVersion:
-        type: boolean
-        description: Breaks Backwards Compatibility
-        default: false
-  pull_request:
+name: Update Input Variable
+
+on:
+ workflow_dispatch:
+  inputs:
+    is_ver: 
+      type: boolean
+      default: false
+ push:
     branches:
+      - main
       - master
-  push:
-    branches:
-      - master
+env:
+  var1: false
+  type: boolean
+
 jobs:
-  setup-vars:
+  update_variable:
     runs-on: ubuntu-latest
+    env:
+      MY_VARIABLE: initial_value
     steps:
-    - name: Check if not triggered by workflow dispatch set to default
-      id: updated_input
-      run: |
-        if [[ ${{ github.event_name }} != 'workflow_dispatch' ]]; then
-          echo "This workflow was not triggered by workflow_dispatch"
-          echo "VERSION_FLAG=false" >> "$GITHUB_OUTPUT"
-        else
-          echo "This workflow was triggered by workflow_dispatch"
-          echo "VERSION_FLAG=${{ inputs.isMajorVersion }}" >> "$GITHUB_OUTPUT"
-        fi     
-  publis-release:
-    runs-on: ubuntu-latest
-    needs: setup-vars
-    steps:
-    - name: test
-      run: |
-        echo "${{ needs.setup-vars.outputs.VERSION_FLAG }}"
+      - name: Update Variable
+        run: echo "::set-env name=MY_VARIABLE::new_value"
+
+      - name: Use Updated Variable
+        run: |
+          echo "Updated value is $MY_VARIABLE"
+          echo "Updated value is ${{ inputs.var }}"       
+          echo "Updated value is ${{ inputs.var1 }}"       
