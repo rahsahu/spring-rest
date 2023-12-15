@@ -1,3 +1,13 @@
+jobs:
+  myJob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use my reusable action
+        uses: your-username/your-action-repo@v1
+        with:
+          myInput: 'some value'
+
+
 name: 'My Reusable Action'
 description: 'An example of a reusable GitHub Action'
 inputs:
