@@ -1,0 +1,21 @@
+name: Fetch Enterprise Settings
+
+on:
+  workflow_dispatch: # This triggers the workflow manually
+
+jobs:
+  fetch-settings:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Fetch Enterprise Settings
+        env:
+          TOKEN: ${{ secrets.YOUR_PAT_SECRET_NAME }}
+        run: |
+          curl -H "Authorization: token $TOKEN" \
+               -H "Accept: application/vnd.github.v3+json" \
+               https://your-enterprise-github-url/api/v3/enterprises/ENTERPRISE_NAME/settings
+
