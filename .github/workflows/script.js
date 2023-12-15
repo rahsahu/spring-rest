@@ -1,3 +1,29 @@
+name: 'My Reusable Action'
+description: 'An example of a reusable GitHub Action'
+inputs:
+  myInput:
+    description: 'An example input'
+    required: true
+    default: 'default value'
+runs:
+  using: 'node12'
+  main: 'index.js'
+
+
+// index.js
+
+const core = require('@actions/core');
+
+try {
+  const myInput = core.getInput('myInput');
+  console.log(`The value of myInput is: ${myInput}`);
+  
+  // Your action's logic here using the input value
+} catch (error) {
+  core.setFailed(error.message);
+}
+
+
 const { GitHub, context } = require('@actions/github');
 const fs = require('fs');
 const jwt = require('jsonwebtoken');
