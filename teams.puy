@@ -1,0 +1,28 @@
+import requests
+
+# Replace 'your-organization-name' and 'your-token' with your GitHub organization name and personal access token
+organization_name = 'your-organization-name'
+token = 'your-token'
+
+# GitHub API endpoint for listing teams in an organization
+api_url = f'https://api.github.com/orgs/{organization_name}/teams'
+
+# Headers with the authorization token
+headers = {
+    'Authorization': f'Bearer {token}',
+    'Accept': 'application/vnd.github.v3+json'
+}
+
+# Make the GET request
+response = requests.get(api_url, headers=headers)
+
+# Check the response
+if response.status_code == 200:  # 200 OK indicates success
+    teams = response.json()
+    print('List of teams in the organization:')
+    for team in teams:
+        print(f'Team Name: {team["name"]}, Team ID: {team["id"]}')
+else:
+    print('Error:', response.status_code)
+    print('Response:', response.text)
+
